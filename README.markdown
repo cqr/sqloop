@@ -15,6 +15,12 @@ You can also use a shorthand for setting properties, like so:
 
     print_r($cats->table('cats')->color('brown')->first);
 
+Or, if you prefer:
+
+    $cats->setting('table', 'cats');
+    $cats->color = 'brown';
+    print_r($cats->first);
+
 In most cases, you will want to have a place to modify the models that are returned by the above, so you can do the following, instead:
 
     class Cat extends SqloopBase { }
@@ -25,6 +31,17 @@ All of the above will generate the exact same query, which is:
     SELECT * FROM cats WHERE color = 'brown' LIMIT 1;
 
 This query is not executed until the first() method is called.
+
+There are some things that you can place in your class definition to make your tables act differently. For instance, sqloop assumes that your table is named the same as your class with an s at the end, which is frequently not true. You can also manage relationships between tables:
+
+    class Cat extends SqloopBase
+    {
+      static function setup(){
+        Cat::table = 'kittehs';
+        Cat::belongs_to_a('Person');
+        Cat::has_many_of('LitterBox')->through('kitteh_litterbox');
+      }
+    }
 
 All methods with no arguments can be called without parenthesis. As such, first is actually a method call and can be accessed as either ``->first()`` or ``->first``.
 
