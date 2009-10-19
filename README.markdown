@@ -26,5 +26,8 @@ All of the above will generate the exact same query, which is:
 
 This query is not executed until the first() method is called.
 
-All methods with no arguments can be called without parenthesis. As such, first is actually a method call and can be accessed as either ``->first()'' or ``->first''.
+All methods with no arguments can be called without parenthesis. As such, first is actually a method call and can be accessed as either ``->first()`` or ``->first``.
 
+Sqloop is written to be used as a library, but is also included as a plugin which is installed by default with *pea*, another of chrisrhoden's projects. *peadmin*, the administrative interface for pea, relies on sqloop.
+
+Full documentation can be found in the github project's online wiki, at http://wiki.github.com/chrisrhoden/sqloop
